@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .field-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <div class="contact-info">
+        <p class="field-label">Name:</p>
+        <p>#{con.name}</p>
+
+        <p class="field-label">Email:</p>
+        <p>#{con.to}</p>
+
+        <p class="field-label">Message:</p>
+        <p>#{con.subject}</p>
+        
+        <p>Hello #{con.name} we have received your mail we contact soon.</p>
+    </div>
+</body>
+</html>

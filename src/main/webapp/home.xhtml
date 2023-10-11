@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<head>
+    <title>Campus Activity Portal</title>
+    <style >
+/* Reset default margin and padding for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set container to cover the full viewport */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+}
+
+/* Full-width image slide container */
+.slider-container {
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Image slide animation */
+.slider {
+  display: flex;
+  animation: slideAnimation 20s linear infinite;
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text content container */
+.content-container {
+  max-width: 1200px;
+  padding: 20px;
+  text-align: justify;
+  margin-top: 20px;
+}
+
+/* Marquee notice container */
+.marquee {
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.marquee span {
+  animation: marqueeAnimation 20s linear infinite;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Image Slide Animation */
+@keyframes slideAnimation {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Marquee Notice Animation */
+@keyframes marqueeAnimation {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+    </style>
+</head>
+	  <ui:decorate template="base.xhtml" >
+	    <ui:define name="component">
+	     <div class="container">
+	     
+	      <div class="marquee">
+	      <marquee ><ui:repeat value="#{notice.data()}" var="notice" >
+            <h2 style="display:inline; color: yellow;" >#{notice.notice}</h2> : 
+           <p style="display:inline;">#{notice.des}</p> 
+        </ui:repeat></marquee> 
+            
+        </div>
+        
+        <!-- Image Slide Section -->
+        <div class="slider-container">
+            <div class="slider">
+                <img src="image/act1.jpg" alt="Image 1" />
+                <img src="image/act2.png" alt="Image 2" />
+                <img src="image/act3.jpg" alt="Image 3" />
+            </div>
+        </div>
+
+        <!-- Text Content Section -->
+        <div class="content-container">
+            <h1>Welcome to Campus Activity Portal</h1>
+            
+            <p> Ajk is known for its strong industry connections, collaborations, and partnerships with leading companies and institutions worldwide. It strives to provide a nurturing and intellectually stimulating environment for its students to excel in academics, research, and extracurricular activities.</p>
+
+                             <p>With a dedicated faculty and a commitment to fostering holistic development, KL University has become a preferred choice for students seeking a world-class education in India. It continues to make significant contributions to higher education and plays a pivotal role in shaping the future of its students and the society at large.</p>
+            </div>
+
+        <!-- Marquee Notice Section -->
+       
+
+    </div>
+    
+    <script >
+ /// JavaScript for Image Slide Animation
+document.addEventListener("DOMContentLoaded", function () {
+  const slider = document.querySelector(".slider");
+
+  setInterval(function () {
+    slider.style.animation = "slideAnimation 20s linear infinite";
+    setTimeout(function () {
+      slider.style.animation = "";
+      const firstSlide = slider.firstElementChild;
+      slider.appendChild(firstSlide);
+    }, 1000);
+  }, 5000); // Change image every 5 seconds
+});
+
+// JavaScript for Marquee Animation
+document.addEventListener("DOMContentLoaded", function () {
+  const marquee = document.querySelector(".marquee span");
+
+  setInterval(function () {
+    marquee.style.animation = "marqueeAnimation 20s linear infinite";
+    setTimeout(function () {
+      marquee.style.animation = "";
+      const firstNotice = marquee.firstElementChild;
+      marquee.appendChild(firstNotice);
+    }, 20000); // Change notice every 20 seconds
+  }, 5000); // Start marquee animation after 5 seconds
+});
+
+          
+    </script>
+
+	    </ui:define>
+	  </ui:decorate>
+	  
+
+</html>

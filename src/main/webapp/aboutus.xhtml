@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+   <head>
+    <title>About Us</title>
+    <link rel="stylesheet" type="text/css" href="css/aboutus.css" />
+    <style>
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            80% { opacity: 1; }
+        }
+
+        .team-member {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+	<ui:decorate template="base.xhtml" >
+	    <ui:define name="component">
+	      <body>
+    <h1>About Us</h1>
+
+    <div class="team-member">
+        <img src="image/act1.jpg" alt="Member 1" />
+        <h3>JASWANTH KIRAN ATHOTA</h3>
+        <p>I am Jaswanth kiran athota</p>
+    </div>
+
+    <div class="team-member">
+        <img src="image/act2.png" alt="Member 2" />
+        <h3>chaitanya</h3>
+        <p>Nulla facilisi. In ut purus nec lorem fringilla consequat. Suspendisse tincidunt efficitur vulputate.</p>
+    </div>
+
+    <div class="team-member">
+        <img src="image/act3.jpg" alt="Member 3" />
+        <h3>subhash</h3>
+        <p>Curabitur varius massa non massa dapibus, nec placerat sem accumsan. Fusce in ipsum sed ex malesuada posuere.</p>
+    </div>
+</body>
+	    </ui:define>
+	  </ui:decorate>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Navbar Example</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #f1f1f1;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .navbar-item {
+            margin-right: 10px;
+        }
+
+        .navbar-login-button {
+            background-color: #2196f3;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .navbar-welcome {
+            font-weight: bold;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <div class="navbar">
+        <div class="navbar-item navbar-logo">
+            <h:outputText value="Logo" />
+        </div>
+        <div class="navbar-item">
+            <h:panelGroup rendered="#{not empty loginBean.loggedInUser}">
+                <h:outputText styleClass="navbar-welcome" value="Welcome, #{loginBean.loggedInUser}" />
+            </h:panelGroup>
+            <h:panelGroup rendered="#{empty loginBean.loggedInUser}">
+                <h:commandButton styleClass="navbar-login-button" value="Login" action="#{loginBean.login}" />
+            </h:panelGroup>
+        </div>
+    </div>
+</h:body>
+
+</html>

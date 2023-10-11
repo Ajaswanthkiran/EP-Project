@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Activity Management</title>
+    <style>
+        /* CSS styles */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .form-container {
+            display: none;
+            margin-top: 20px;
+            width: 400px;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .form-container h2 {
+            margin-bottom: 10px;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-container .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-container .form-group input,
+        .form-container .form-group textarea {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .form-container .form-group textarea {
+            height: 100px;
+        }
+
+        .form-container .form-group .date-input {
+            display: flex;
+        }
+
+        .form-container .form-group .date-input input {
+            width: 50%;
+            margin-right: 5px;
+        }
+
+        .form-container .form-group .time-input {
+            display: flex;
+        }
+
+        .form-container .form-group .time-input input {
+            width: 50%;
+            margin-right: 5px;
+        }
+
+        .form-container .form-group .location-input {
+            display: flex;
+        }
+
+        .form-container .form-group .location-input input {
+            width: 50%;
+            margin-right: 5px;
+        }
+
+        .activity-buttons {
+            margin-top: 20px;
+        }
+
+        .activity-buttons button {
+            margin-right: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .activity-buttons {
+            margin-top: 20px;
+        }
+
+        .activity-buttons button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            background-color: #2196f3;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .activity-buttons button:hover {
+            background-color: #0c83e2;
+        }
+
+        .activity-buttons button:focus {
+            outline: none;
+        }
+    </style>
+    <script>
+        // JavaScript code
+        function showForm(activity) {
+            // Hide all form containers
+            var formContainers = document.querySelectorAll('.form-container');
+            formContainers.forEach(function (container) {
+                container.classList.remove('active');
+            });
+
+            // Show the selected form container
+            var selectedForm = document.getElementById(activity + '-form');
+            if (selectedForm) {
+                selectedForm.classList.add('active');
+            }
+        }
+    </script>
+</h:head>
+<ui:decorate template="base.xhtml" >
+	    <ui:define name="component">
+<h:body>
+    <div class="container">
+        <div class="activity-buttons">
+            <button onclick="showForm('sports')">Sports</button>
+            <button onclick="showForm('clubs')">Clubs</button>
+            <button onclick="showForm('exams')">Notice</button>
+        </div>
+
+        <div id="sports-form" class="form-container">
+            <h2>Sports Activity</h2>
+            <h:form enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="sports-name">Name</label>
+                    <h:inputText id="sports-name" value="#{act.name}" required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="sports-picture">Picture</label>
+                    <h:inputFile id="sports-picture" value="#{act.img}" required="true" />
+                    #{act.img}
+                </div>
+                <div class="form-group">
+                    <label for="sports-description">Description</label>
+                    <h:inputTextarea id="sports-description" value="#{act.dec}" required="true" />
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <div class="location-input">
+                        <h:inputText value="#{act.loc}" required="true" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:commandButton value="Submit" action="#{act.storeData()}" />
+                </div>
+                #{act.res}
+            </h:form>
+        </div>
+
+        <div id="clubs-form" class="form-container">
+            <h2>Club Activity</h2>
+            <h:form>
+                <div class="form-group">
+                    <label for="clubs-name">Name</label>
+                    <h:inputText id="clubs-name" value="#{activityBean.clubsName}" required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="sports-picture">Picture</label>
+                    <h:inputFile id="sports-picture" value="#{activityBean.clubPicture}" required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="clubs-description">Description</label>
+                    <h:inputTextarea id="clubs-description" value="#{activityBean.clubsDescription}" required="true" />
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <div class="date-input">
+                        <h:inputText value="#{activityBean.clubsDate}" required="true" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <div class="time-input">
+                        <h:inputText value="#{activityBean.clubsTime}" required="true" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <div class="location-input">
+                        <h:inputText value="#{activityBean.clubsLocation}" required="true" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h:commandButton value="Submit" action="#{activityBean.addClubsActivity}" />
+                </div>
+            </h:form>
+        </div>
+
+        <div id="exams-form" class="form-container">
+            <h2>Notice</h2>
+            <h:form>
+                <div class="form-group">
+                    <label for="exams-notice">Notice</label>
+                    <h:inputText id="exams-notice" value="#{notice.notice}" required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="exams-description">Description</label>
+                    <h:inputTextarea id="exams-description" value="#{notice.des}" required="true" />
+                    
+                    </div>
+                 <div class="form-group">
+                    <h:commandButton value="Submit" action="#{notice.storeData()}" />
+                </div>
+            </h:form>
+        </div>
+    </div>
+</h:body>
+</ui:define>
+</ui:decorate>
+</html>

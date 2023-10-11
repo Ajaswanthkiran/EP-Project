@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+    <title>AJK</title>
+    <style>
+        /* Navbar styles */
+        .navbar {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .navbar .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: #333;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar ul li {
+            margin-right: 10px;
+        }
+
+        .navbar ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #eee;
+        }
+
+        .login {
+            margin-left: auto;
+            font-size: 18px;
+             color: #333;
+            text-decoration: none;
+            
+            
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        /* Content styles */
+        .content {
+            margin-top: 50px;
+        }
+
+        .team-member {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Animation styles */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<h:form>
+    <div class="navbar">
+    
+        <h:commandLink action="home" value="AJK" class="logo" />
+        <ul>
+            <li><h:commandLink action="home" value="Home" /></li>
+            <li><h:commandLink action="aboutus" value="About Us"  /></li>
+            
+            <li><h:panelGroup rendered="#{login.username eq 'ajk' || login.username eq 'a.jaswanthkiran@gmail.com'}">
+            <h:commandLink action="act" value="Add Activity"  />
+        </h:panelGroup>
+            
+            </li>
+            <li><h:commandLink action="sport" value="Sports"  /></li>
+            <li><h:commandLink action="club" value="Clubs"  /></li>
+            <li><h:commandLink action="notice" value="Notice"  /></li>
+            <li><h:commandLink action="contactus" value="Contact US"  /></li>
+        </ul>
+        
+        <h:panelGroup rendered="#{not empty login.username}" class="login" >
+        <div class="dropdown">
+                <h:outputText styleClass="navbar-welcome"  class="login" value="Welcome, #{login.username}" />
+                <div class="dropdown-content">
+                        <a href="#">Profile</a>
+                        <a href="#">Settings</a>
+                        <h:commandLink action="#{login.logout()}" value="Logout"  />
+                    </div>
+           </div>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{empty login.username}" class="login" > 
+                <h:commandLink styleClass="navbar-login-button" class="login" value="Login / Registration" action="loginorreg" />
+            </h:panelGroup>
+        
+        
+    </div>
+</h:form>
+    
+</body>
+</html>
